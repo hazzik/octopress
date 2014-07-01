@@ -23,7 +23,7 @@ module Octopress
           CommandHelpers.add_common_options c
 
           c.action do |args, options|
-            options['path'] = args.first
+            options['path'] = args.first.encode('utf-8')
             Page.new(options).write
           end
         end
@@ -37,7 +37,7 @@ module Octopress
           CommandHelpers.add_common_options c
 
           c.action do |args, options|
-            options['title'] = args.first
+            options['title'] = args.first.encode('utf-8')
             Post.new(options).write
           end
         end
@@ -50,7 +50,7 @@ module Octopress
           CommandHelpers.add_common_options c
 
           c.action do |args, options|
-            options['title'] = args.first
+            options['title'] = args.first.encode('utf-8')
             Draft.new(options).write
           end
         end
