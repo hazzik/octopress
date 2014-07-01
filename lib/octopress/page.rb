@@ -25,7 +25,7 @@ module Octopress
 
       # Ensure a quoted title to avoid YAML parsing issues.
       #
-      @options['title'] = "#{@options['title']}"
+      @options['title'] = "#{@options['title'].encode('utf-8')}"
 
       @content = options['content'] || content
     end
