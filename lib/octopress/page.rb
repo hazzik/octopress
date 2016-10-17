@@ -166,10 +166,11 @@ module Octopress
       # Allow templates to use date fragments
       #
       date = Time.parse(vars['date'] || Time.now.iso8601)
+      vars['date'] = date.iso8601
       vars['year'] = date.year
       vars['month'] = date.strftime('%m')
       vars['day'] = date.strftime('%d')
-      vars['ymd'] = date.strftime('%D')
+      vars['ymd'] = date.strftime('%Y-%m-%d')
 
       # If possible only parse the YAML front matter.
       # If YAML front-matter dashes aren't present parse the whole 
@@ -202,6 +203,12 @@ module Octopress
       @options['date'].split('T')[0]
     end
 
+    # Returns a slug extracted from a path
+    #
+    def path_slug(path)
+      File.basename(path, '.*').scan(/((\d+-){3})?(\S+)/).flatten[2]
+    end
+    
     # Returns a string which is url compatible.
     #
     def title_slug
